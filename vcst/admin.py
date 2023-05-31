@@ -1,20 +1,22 @@
 from django.contrib import admin
 from .models import (
-    CorpFormulaVCST,
-    ProductFormulaVCST,
-    ProductTypeFormulaVCST,
-    UmFormulaVCST,
-    PdGrdFormulaVCST,
-    WhouseFormulaVCST,
-    EmployeeVCST,
-    CoorVCST,
-    GlrefVCST
+    Corp,
+    Product,
+    ProductType,
+    Um,
+    PdGrd,
+    Whouse,
+    Employee,
+    Coor,
+    Glref,
+    Dept,
+    Sect
 )
 
 # Register your models here.
 
 
-class CorpFormulaVCSTAdmin(admin.ModelAdmin):
+class CorpAdmin(admin.ModelAdmin):
     search_fields = (
         "FCCODE",
         "FCNAME",
@@ -47,7 +49,7 @@ class CorpFormulaVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-class ProductTypeFormulaVCSTAdmin(admin.ModelAdmin):
+class ProductTypeAdmin(admin.ModelAdmin):
     search_fields = (
         "FCCODE",
         "FCNAME",
@@ -80,7 +82,7 @@ class ProductTypeFormulaVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-class ProductFormulaVCSTAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     search_fields = (
         "FCCODE",
         "FCNAME",
@@ -121,7 +123,7 @@ class ProductFormulaVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-class UmFormulaVCSTAdmin(admin.ModelAdmin):
+class UmAdmin(admin.ModelAdmin):
     search_fields = (
         "FCCODE",
         "FCNAME",
@@ -154,7 +156,7 @@ class UmFormulaVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-class PdGrdFormulaVCSTAdmin(admin.ModelAdmin):
+class PdGrdAdmin(admin.ModelAdmin):
     search_fields = (
         "FCCODE",
         "FCNAME",
@@ -187,7 +189,7 @@ class PdGrdFormulaVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-class WhouseFormulaVCSTAdmin(admin.ModelAdmin):
+class WhouseAdmin(admin.ModelAdmin):
     search_fields = (
         "FCCODE",
         "FCNAME",
@@ -220,7 +222,7 @@ class WhouseFormulaVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-class EmployeeVCSTAdmin(admin.ModelAdmin):
+class EmployeeAdmin(admin.ModelAdmin):
     search_fields = (
         "FCLOGIN",
         "FCPW",
@@ -240,7 +242,7 @@ class EmployeeVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-class CoorVCSTAdmin(admin.ModelAdmin):
+class CoorAdmin(admin.ModelAdmin):
     search_fields = (
         "FCCODE",
         "FCNAME",
@@ -266,7 +268,10 @@ class CoorVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-class GlrefVCSTAdmin(admin.ModelAdmin):
+class GlrefAdmin(admin.ModelAdmin):
+    search_fields = (
+        "FCREFNO",
+    )
     list_display = (
         "FCCODE",
         "FCREFNO",
@@ -276,12 +281,56 @@ class GlrefVCSTAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(CorpFormulaVCST, CorpFormulaVCSTAdmin)
-admin.site.register(ProductTypeFormulaVCST, ProductTypeFormulaVCSTAdmin)
-admin.site.register(ProductFormulaVCST, ProductFormulaVCSTAdmin)
-admin.site.register(UmFormulaVCST, UmFormulaVCSTAdmin)
-admin.site.register(PdGrdFormulaVCST, PdGrdFormulaVCSTAdmin)
-admin.site.register(WhouseFormulaVCST, WhouseFormulaVCSTAdmin)
-admin.site.register(EmployeeVCST, EmployeeVCSTAdmin)
-admin.site.register(CoorVCST, CoorVCSTAdmin)
-admin.site.register(GlrefVCST, GlrefVCSTAdmin)
+class DeptAdmin(admin.ModelAdmin):
+    search_fields = (
+        "FCCODE",
+        "FCNAME",
+        "FCNAME2",
+    )
+
+    list_filter = [
+        "FTDATETIME",
+        "FCCODE",
+    ]
+    list_display = (
+        "FCCODE",
+        "FCNAME",
+        "FCNAME2",
+        "FTDATETIME",
+        "FTLASTUPD",
+    )
+    pass
+
+
+class SectAdmin(admin.ModelAdmin):
+    search_fields = (
+        "FCCODE",
+        "FCNAME",
+        "FCNAME2",
+    )
+
+    list_filter = [
+        "FTDATETIME",
+        "FCDEPT",
+    ]
+    list_display = (
+        "FCCODE",
+        "FCNAME",
+        "FCNAME2",
+        "FTDATETIME",
+        "FTLASTUPD",
+    )
+    pass
+
+
+admin.site.register(Corp, CorpAdmin)
+admin.site.register(ProductType, ProductTypeAdmin)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Um, UmAdmin)
+admin.site.register(PdGrd, PdGrdAdmin)
+admin.site.register(Whouse, WhouseAdmin)
+admin.site.register(Employee, EmployeeAdmin)
+admin.site.register(Coor, CoorAdmin)
+admin.site.register(Glref, GlrefAdmin)
+admin.site.register(Dept, DeptAdmin)
+admin.site.register(Sect, SectAdmin)

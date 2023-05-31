@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class WhouseFormulaVCST(models.Model):
+class Whouse(models.Model):
     FCSKID = models.CharField(
         primary_key=True,
         max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
@@ -31,7 +31,7 @@ class WhouseFormulaVCST(models.Model):
         verbose_name_plural = "คลังสินค้า"
 
 
-class CorpFormulaVCST(models.Model):
+class Corp(models.Model):
     FCSKID = models.CharField(
         primary_key=True,
         max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
@@ -73,7 +73,7 @@ class CorpFormulaVCST(models.Model):
         verbose_name_plural = "รายชื่อบริษัท"
 
 
-class ProductTypeFormulaVCST(models.Model):
+class ProductType(models.Model):
     FCSKID = models.CharField(
         max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
     FCCODE = models.CharField(
@@ -101,7 +101,7 @@ class ProductTypeFormulaVCST(models.Model):
         verbose_name_plural = "ประเภทสินค้า"
 
 
-class UmFormulaVCST(models.Model):
+class Um(models.Model):
     FCSKID = models.CharField(
         primary_key=True,
         max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
@@ -129,7 +129,7 @@ class UmFormulaVCST(models.Model):
         verbose_name_plural = "หน่วยสินค้า"
 
 
-class PdGrdFormulaVCST(models.Model):
+class PdGrd(models.Model):
     FCSKID = models.CharField(
         primary_key=True,
         max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
@@ -157,7 +157,7 @@ class PdGrdFormulaVCST(models.Model):
         verbose_name_plural = "กลุ่มสินค้า"
 
 
-class ProductFormulaVCST(models.Model):
+class Product(models.Model):
     FCSKID = models.CharField(
         primary_key=True, max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
     FCCODE = models.CharField(
@@ -173,13 +173,13 @@ class ProductFormulaVCST(models.Model):
     FCDATASER = models.CharField(
         max_length=20, verbose_name="รหัสจำเพราะ", db_column='FCDATASER', editable=False)
     FCCORP = models.ForeignKey(
-        CorpFormulaVCST, verbose_name="ชื่อบริษัท", db_column='FCCORP', on_delete=models.CASCADE)
+        Corp, verbose_name="ชื่อบริษัท", db_column='FCCORP', on_delete=models.CASCADE)
     FCTYPE = models.ForeignKey(
-        ProductTypeFormulaVCST, verbose_name="ประเภท", db_column='FCTYPE', on_delete=models.CASCADE)
+        ProductType, verbose_name="ประเภท", db_column='FCTYPE', on_delete=models.CASCADE)
     FCPDGRP = models.ForeignKey(
-        PdGrdFormulaVCST, verbose_name="กลุ่ม", db_column='FCPDGRP', on_delete=models.CASCADE)
+        PdGrd, verbose_name="กลุ่ม", db_column='FCPDGRP', on_delete=models.CASCADE)
     FCUM = models.ForeignKey(
-        UmFormulaVCST, verbose_name="หน่วย", db_column='FCUM', on_delete=models.CASCADE)
+        Um, verbose_name="หน่วย", db_column='FCUM', on_delete=models.CASCADE)
     FTDATETIME = models.DateTimeField(
         verbose_name="สร้างเมื่อ", db_column='FTDATETIME', auto_now_add=True)
     FTLASTEDIT = models.DateTimeField(
@@ -198,7 +198,7 @@ class ProductFormulaVCST(models.Model):
         verbose_name_plural = "รายการสินค้า"
 
 
-class EmployeeVCST(models.Model):
+class Employee(models.Model):
     FCSKID = models.CharField(
         primary_key=True, max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
     FCLOGIN = models.CharField(
@@ -225,7 +225,7 @@ class EmployeeVCST(models.Model):
         verbose_name_plural = "รายการผู้ใช้งาน"
 
 
-class CoorVCST(models.Model):
+class Coor(models.Model):
     FCSKID = models.CharField(
         primary_key=True, max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
     FCCODE = models.CharField(
@@ -261,7 +261,7 @@ class CoorVCST(models.Model):
     FMMEMDATA = models.TextField(
         verbose_name="หมายเหตุ", db_column='FMMEMDATA')
     FCCORP = models.ForeignKey(
-        CorpFormulaVCST, verbose_name="ชื่อบริษัท", db_column='FCCORP', on_delete=models.CASCADE)
+        Corp, verbose_name="ชื่อบริษัท", db_column='FCCORP', on_delete=models.CASCADE)
     FTDATETIME = models.DateTimeField(
         verbose_name="สร้างเมื่อ", db_column='FTDATETIME', auto_now_add=True)
     FTLASTEDIT = models.DateTimeField(
@@ -280,7 +280,7 @@ class CoorVCST(models.Model):
         verbose_name_plural = "รายการลูกค้า"
 
 
-class GlrefVCST(models.Model):
+class Glref(models.Model):
     FCBOOK = models.CharField(
         max_length=8, verbose_name="เล่มเอกสาร", db_column='FCBOOK')
     FCBRANCH = models.CharField(
@@ -288,15 +288,15 @@ class GlrefVCST(models.Model):
     FCCODE = models.CharField(
         max_length=20, verbose_name="รหัส", db_column='FCCODE', editable=False)
     FCCOOR = models.ForeignKey(
-        CoorVCST, verbose_name="ลูกค้า", db_column='FCCOOR', on_delete=models.CASCADE)
+        Coor, verbose_name="ลูกค้า", db_column='FCCOOR', on_delete=models.CASCADE)
     FCCORP = models.ForeignKey(
-        CorpFormulaVCST, verbose_name="ชื่อบริษัท", db_column='FCCORP', on_delete=models.CASCADE)
+        Corp, verbose_name="ชื่อบริษัท", db_column='FCCORP', on_delete=models.CASCADE)
     FCCORRECTB = models.ForeignKey(
-        EmployeeVCST, verbose_name="ชื่อบริษัท", db_column='FCCORRECTB', on_delete=models.CASCADE, editable=False)
+        Employee, verbose_name="ชื่อบริษัท", db_column='FCCORRECTB', on_delete=models.CASCADE, editable=False)
     # FCCREATEBY = models.ForeignKey(
-    #     EmployeeVCST, verbose_name="ชื่อบริษัท", db_column='FCCREATEBY', on_delete=models.CASCADE)
+    #     Employee, verbose_name="ชื่อบริษัท", db_column='FCCREATEBY', on_delete=models.CASCADE)
     # FCCREATETY = models.ForeignKey(
-    #     EmployeeVCST, verbose_name="ชื่อบริษัท", db_column='FCCREATETY', on_delete=models.CASCADE)
+    #     Employee, verbose_name="ชื่อบริษัท", db_column='FCCREATETY', on_delete=models.CASCADE)
     FCDATASER = models.CharField(
         max_length=8, verbose_name="APPID", db_column='FCDATASER', editable=False)
     # FCDELICOOR
@@ -316,9 +316,9 @@ class GlrefVCST(models.Model):
     FCSTEP = models.CharField(
         max_length=5, verbose_name="I/O", db_column='FCSTEP')
     # FCFRWHOUSE = models.ForeignKey(
-    #     WhouseFormulaVCST, verbose_name="จากคลัง", db_column='FCFRWHOUSE', on_delete=models.CASCADE)
+    #     Whouse, verbose_name="จากคลัง", db_column='FCFRWHOUSE', on_delete=models.CASCADE)
     # FCTOWHOUSE = models.ForeignKey(
-    #     WhouseFormulaVCST, verbose_name="เข้าที่คลัง", db_column='FCTOWHOUSE', on_delete=models.CASCADE)
+    #     Whouse, verbose_name="เข้าที่คลัง", db_column='FCTOWHOUSE', on_delete=models.CASCADE)
     # FCVATCOOR
     # FDDATE
     # FIMILLISEC
@@ -347,3 +347,65 @@ class GlrefVCST(models.Model):
         app_label = "vcst"
         verbose_name = "รายการ GLREF"
         verbose_name_plural = "รายการ GLREF"
+
+
+class Dept(models.Model):
+    FCSKID = models.CharField(
+        primary_key=True,
+        max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
+    FCCORP = models.ForeignKey(
+        Corp, db_column='FCCORP', verbose_name="บริษัท", on_delete=models.CASCADE)
+    FCCODE = models.CharField(
+        max_length=20, verbose_name="รหัส", db_column='FCCODE')
+    FCNAME = models.CharField(
+        max_length=20, verbose_name="ชื่อ", db_column='FCNAME')
+    FCNAME2 = models.CharField(
+        max_length=20, verbose_name="ข้อมูลเพิ่มเติม", db_column='FCNAME2')
+    FTDATETIME = models.DateTimeField(
+        verbose_name="สร้างเมื่อ", db_column='FTDATETIME', auto_now_add=True)
+    FTLASTEDIT = models.DateTimeField(
+        verbose_name="แก้ไขเมื่อ", db_column='FTLASTEDIT', auto_now=True)
+    FTLASTUPD = models.DateTimeField(
+        verbose_name="อัพเดทเมื่อ", db_column='FTLASTUPD', auto_now=True)
+
+    def __str__(self) -> str:
+        return self.FCNAME
+
+    class Meta:
+        # db_table_comment = "formula_vcst"
+        db_table = "DEPT"
+        app_label = "vcst"
+        verbose_name = "ข้อมูลฝ่าย"
+        verbose_name_plural = "ข้อมูลฝ่าย"
+
+
+class Sect(models.Model):
+    FCSKID = models.CharField(
+        primary_key=True,
+        max_length=8, verbose_name="ID", db_column='FCSKID', editable=False)
+    FCCORP = models.ForeignKey(
+        Corp, db_column='FCCORP', verbose_name="บริษัท", on_delete=models.CASCADE)
+    FCDEPT = models.ForeignKey(
+        Dept, db_column='FCDEPT', verbose_name="ฝ่าย", on_delete=models.CASCADE)
+    FCCODE = models.CharField(
+        max_length=20, verbose_name="รหัส", db_column='FCCODE')
+    FCNAME = models.CharField(
+        max_length=20, verbose_name="ชื่อ", db_column='FCNAME')
+    FCNAME2 = models.CharField(
+        max_length=20, verbose_name="ข้อมูลเพิ่มเติม", db_column='FCNAME2')
+    FTDATETIME = models.DateTimeField(
+        verbose_name="สร้างเมื่อ", db_column='FTDATETIME', auto_now_add=True)
+    FTLASTEDIT = models.DateTimeField(
+        verbose_name="แก้ไขเมื่อ", db_column='FTLASTEDIT', auto_now=True)
+    FTLASTUPD = models.DateTimeField(
+        verbose_name="อัพเดทเมื่อ", db_column='FTLASTUPD', auto_now=True)
+
+    def __str__(self) -> str:
+        return self.FCNAME
+
+    class Meta:
+        # db_table_comment = "formula_vcst"
+        db_table = "SECT"
+        app_label = "vcst"
+        verbose_name = "ข้อมูลแผนก"
+        verbose_name_plural = "ข้อมูลแผนก"
