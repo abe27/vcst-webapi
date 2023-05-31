@@ -7,7 +7,7 @@ class ReceiveEnties(models.Model):
     id = models.AutoField(primary_key=True, editable=False)
     book_id = models.CharField(
         max_length=8, null=False, blank=False, verbose_name="เล่มที่เอกสาร")
-    whs
+    whs_id = models.CharField(max_length=8, null=False, blank=False, verbose_name="คลังสินค้า")
 
     def __str__(self):
         return self.book_id
